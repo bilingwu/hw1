@@ -6,9 +6,10 @@
 # note: tar compression results in error 'file changed as we read it' for 
 # current directory. this is OK
 
+find . -name '*.ipynb' | xargs ipython nbconvert --to html
 hw=hw1
 exclude=("*.git*" "*datasets/cifar-10-batches-py*"                      \
-    "*.ipynb_checkpoints*" "*README.md" "*collectSubmission.sh"         \
+    "*.ipynb_checkpoint*" "*README.md" "*collectSubmission.sh"         \
     "*requirements.txt")
 
 # check to see if system has zip or tar
