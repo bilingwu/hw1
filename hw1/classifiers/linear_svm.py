@@ -35,13 +35,17 @@ def structured_loss_simple(W, X, y, reg):
 
       if margin > 0:
         loss += margin
+        dW[:, y[i]] -= X[i,:] #??
+        dW[:,j] += X[i, :] ##??
 
   # Right now the loss is a sum over all training examples, but we want it
   # to be an average instead so we divide by num_train.
   loss /= num_train
+  dW /= num_train
 
   # Add regularization to the loss.
   loss += 0.5 * reg * np.sum(W * W)
+  dW += reg*Ws
 
   #############################################################################
   # TODO:                                                                     #
@@ -50,8 +54,9 @@ def structured_loss_simple(W, X, y, reg):
   # it may be simpler to compute the derivative at the same time that the     #
   # loss is being computed. As a result you may need to modify some of the    #
   # code above to compute the gradient.                                       #
-  ############################################################################# 
+  #############################################################################
 
+  # np.gradient()
 
   return loss, dW
 
